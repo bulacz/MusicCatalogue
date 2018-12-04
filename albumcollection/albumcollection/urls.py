@@ -16,10 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, re_path
 
-from albumlist.views import ShowAlbumList
+from albumlist.views import ShowAlbumList, ShowAllArtists
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     re_path(r'^albumlist$', ShowAlbumList.as_view()),
+    re_path(r'^artistslist$', ShowAllArtists.as_view()),
 
 ]

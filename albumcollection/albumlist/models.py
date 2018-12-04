@@ -21,7 +21,7 @@ class Artist (models.Model):
     name = models.CharField(max_length=160)
 
     def __str__(self):
-        return self.name
+        return f'{self.name}'
 
 
 class Album (models.Model):
@@ -30,10 +30,10 @@ class Album (models.Model):
     release_year = models.IntegerField()
     songs = models.TextField()
     type = models.IntegerField(choices=RECORD_TYPES, name="type", default=1)
-    where_is_it = models.IntegerField(choices=LOCATIONS, name="location", default=1)
+    location = models.IntegerField(choices=LOCATIONS, name="location", default=1)
 
     def __str__(self):
-        return f'"{self.title}", {self.band}, {self.release_year}'
+        return f'"{self.title}", {self.band}, {self.release_year}, ({self.get_location_display()})'
 
 
 
