@@ -1,0 +1,13 @@
+.idea/
+mc-venv/
+
+albumcollection/__init__.py
+albumcollection/__init__.pyc
+albumcollection/__pycache__/
+albumcollection/settings.pyc
+albumlist/__init__.py
+albumlist/__init__.pyc
+albumlist/__pycache__/
+albumlist/migrations/__init__.py
+albumlist/migrations/__pycache__/
+db.sqlite3
