@@ -33,7 +33,7 @@ class Album (models.Model):
     where_is_it = models.IntegerField(choices=LOCATIONS, name="location", default=1)
 
     def __str__(self):
-        return f'Album {self.title}, wydany przez {self.band}, w roku {self.release_year}'
+        return f'"{self.title}", {self.band}, {self.release_year}'
 
 
 

@@ -9,3 +9,5 @@ from albumlist.models import Album
 class ShowAlbumList(View):
     def get(self, request):
         albums = Album.objects.all()
+        return render(request, "../templates/show-albums.html", {'albums': albums})
+
