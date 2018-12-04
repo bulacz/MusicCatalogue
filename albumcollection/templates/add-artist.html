@@ -1,10 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{%  extends 'base.html' %}
+
+{% block title %}
+    Dodaj artystę
+{% endblock %}
+
+{% block content %}
+    <P> lala</P>
+    <form method="post">
+    {% csrf_token %}
+        {{ form|crispy }}
+    <button type="submit" class="btn btn-success">Dodaj</button>
+    </form>
+    {{ artists }}
+{% endblock %}

@@ -16,11 +16,19 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, re_path
 
-from albumlist.views import ShowAlbumList, ShowAllArtists
+from albumlist.views import ShowAlbumList, ShowAllArtists, AddArtist, AddAlbum, ShowAlbum, ShowArtist, DeleteAlbum, \
+    DeleteArtist, ShowMainPage
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    re_path(r'^albumlist$', ShowAlbumList.as_view()),
-    re_path(r'^artistslist$', ShowAllArtists.as_view()),
+    re_path(r'^main/$', ShowMainPage.as_view()),
+    re_path(r'^albumlist/$', ShowAlbumList.as_view()),
+    re_path(r'^artistslist/$', ShowAllArtists.as_view()),
+    re_path(r'^add-artist$', AddArtist.as_view()),
+    re_path(r'^add-album$', AddAlbum.as_view()),
+    re_path(r'^show-album/(?P<album_id>[0-9]+)$', ShowAlbum.as_view()),
+    re_path(r'^show-artist/(?P<artist_id>[0-9]+)$', ShowArtist.as_view()),
+    re_path(r'^delete-album/(?P<album_id>[0-9]+)$', DeleteAlbum.as_view()),
+    re_path(r'^delete-artist/(?P<artist_id>[0-9]+)$', DeleteArtist.as_view()),
 
 ]

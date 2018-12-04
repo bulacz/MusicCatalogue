@@ -1,10 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{%  extends 'base.html' %}
 
-</body>
-</html>
+{% block title %}
+    Dodaj album
+{% endblock %}
+
+{% block content %}
+    <P> lala</P>
+    <form method="post">
+    {% csrf_token %}
+        {{ form }}
+    <input type="submit" value="Dodaj">
+    </form>
+{% endblock %}
