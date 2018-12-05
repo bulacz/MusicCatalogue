@@ -37,13 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'bootstrap3'
-    'crispy_forms',
+    # 'bootstrap3',
+    'bootstrapform',
     'albumlist',
     'albumcollection',
 ]
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -60,7 +59,7 @@ ROOT_URLCONF = 'albumcollection.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        'DIRS': ['albumcollection/albumlist/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -129,6 +128,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
+# STATIC_URL = 'albumcollection/albumlist/static/'
 STATIC_URL = '/static/'
+STATIC_ROOT = 'albumcollection/albumlist/../static'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static"),
+                    '/home/michalblaszczyk/ITCodersLab/Music_Catalogue/albumcollection/static']
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = 'albumcollection/static/../media'
 
 LOGIN_URL = 'albumcollection/login'

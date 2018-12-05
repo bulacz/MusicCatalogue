@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+{% load static %}
+{% load bootstrap %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/albumlist.css' %}">
+
+{#    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" defer></script>#}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{% block title %}MusicCatalogue{% endblock %}</title>
+</head>
+
+
+<div id="site_header" align="center" class="site-header">
+    <a href="/main/">Main Page</a>
+    <a href="/artistslist/">Show Artists</a>
+    <a href="/albumlist">Show Albums</a>
+</div>
+
+
+
+{% block content %}
+
+{% endblock %}
+
+</body>
+</html>

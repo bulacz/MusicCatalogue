@@ -1,0 +1,21 @@
+{%  extends 'base.html' %}
+
+{% block title %}
+    Dodaj album
+{% endblock %}
+
+
+{% load bootstrap %}
+
+{% block content %}
+    <P> lala</P>
+    <div align="center" class="container">
+        <form method="post">
+            {% csrf_token %}
+                    {{ form }}
+            <button type="submit" class="btn btn-success btn-lg">Dodaj</button>
+        </form>
+
+    </div>
+
+{% endblock %}

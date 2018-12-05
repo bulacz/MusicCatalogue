@@ -13,15 +13,18 @@ class ShowMainPage(View):
     def get(self, request):
         return render(request, "main-page.html")
 
+
 class ShowAlbumList(View):
     def get(self, request):
         albums = Album.objects.all()
         return render(request, "../templates/show-albums.html", {'albums': albums})
 
+
 class ShowAllArtists(View):
     def get(self, request):
         artists = Artist.objects.all()
         return render(request, "../templates/show-artists.html", {'artists': artists})
+
 
 class AddArtist(View):
     def get(self, request):
@@ -46,6 +49,7 @@ class ShowAlbum(View):
         album = Album.objects.get(pk=album_id)
         return render(request, "show-single-album.html", {"album": album})
 
+
 class DeleteAlbum(View):
     def get(self, request, album_id):
         try:
@@ -54,6 +58,7 @@ class DeleteAlbum(View):
             return HttpResponseRedirect('/albumlist')
         except ObjectDoesNotExist:
             return Http404
+
 
 class DeleteArtist(View):
     def get(self, request, artist_id):

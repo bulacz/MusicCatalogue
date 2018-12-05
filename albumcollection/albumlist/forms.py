@@ -1,5 +1,6 @@
 from django import forms
 
+
 from albumlist.models import Artist, RECORD_TYPES, LOCATIONS, Album
 
 
@@ -16,7 +17,22 @@ class AddArtistForm(forms.Form):
 #     type = forms.ChoiceField(label='nośnik', choices=RECORD_TYPES)
 #     location = forms.ChoiceField(label='lokalizacja', choices=LOCATIONS)
 
+
+# class AddAlbumForm(forms.ModelForm):
+#     class Meta:
+#         model = Album
+#         fields = '__all__'
+#
+
+
 class AddAlbumForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(AddAlbumForm, self).__init__(*args, **kwargs)
+        for field in iter(self.fields):
+            self.fields[field].widget.attrs.update({
+                'class': 'form-control'
+        })
+
     class Meta:
         model = Album
         fields = '__all__'

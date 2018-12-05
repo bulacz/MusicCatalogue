@@ -13,9 +13,13 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf.urls import url
 from django.contrib import admin
 from django.urls import path, re_path
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.views.static import serve
 
+from albumcollection import settings
 from albumlist.views import ShowAlbumList, ShowAllArtists, AddArtist, AddAlbum, ShowAlbum, ShowArtist, DeleteAlbum, \
     DeleteArtist, ShowMainPage
 
@@ -32,3 +36,9 @@ urlpatterns = [
     re_path(r'^delete-artist/(?P<artist_id>[0-9]+)$', DeleteArtist.as_view()),
 
 ]
+
+# urlpatterns += staticfiles_urlpatterns()
+
+if settings.DEBUG:
+#     # static files (images, css, javasript, etc.)
+    urlpatterns += [url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT, }), ]
