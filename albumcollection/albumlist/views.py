@@ -58,9 +58,9 @@ class AddAlbum(View):
         form = AddAlbumForm(request.POST)
         band_id = form.data['band']
         band_to_discogs = Artist.objects.get(pk=band_id).name
-        print(band_to_discogs)
+        print("Wychodzi", band_to_discogs)
 
-        ## realizacja zapytania do API:
+        ## realizacja zapytania do API,
         ## przygotowanie klienta:
         user_agent = 'Bootcamp graduation app - MusicCatalogue by bulacz'
 
@@ -83,7 +83,11 @@ class AddAlbum(View):
         '''
 
         results = discogsclient.search(f'{band_to_discogs}', type='artist')
-        print(results[0].name)
+        print("Przychodzi", results[0].id)
+        print("Przychodzi", results[0].releases)
+        for each_release in results[0].releases:
+            print(each_release.data['title'])
+
 
 
 class ShowAlbum(View):
