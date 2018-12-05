@@ -12,7 +12,8 @@
     <div align="center" class="container">
         <form method="post">
             {% csrf_token %}
-                    {{ form }}
+                {{ form}}
+            <input type="submit" class="linkButton" value="Pobierz dane z discogs"><BR>
             <button type="submit" class="btn btn-success btn-lg">Dodaj</button>
         </form>
 

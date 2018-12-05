@@ -11,3 +11,7 @@ albumlist/__pycache__/
 albumlist/migrations/__init__.py
 albumlist/migrations/__pycache__/
 db.sqlite3
+albumcollection/discogsAuth.py
+albumcollection/albumcollection/discogsAuth.py
+/home/michalblaszczyk/ITCodersLab/Music_Catalogue/albumcollection/albumcollection/discogsAuth.py
+
