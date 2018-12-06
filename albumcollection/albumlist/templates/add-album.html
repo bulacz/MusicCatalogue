@@ -22,11 +22,9 @@
         <div>
             <ul>
                 {% for single_release in releases %}
-                    <div>
-                        <li class="visible" id="{{ single_release.id }}">  {{ single_release.title }}  </li>
-                        <li class="hidden" id="id_number">  {{ single_release.id }}  </li>
-                        <li class="hidden" id="release_date"> {{ single_release.year }}  </li>
-                    </div>
+                    <li class="visible" id="{{ single_release.id }}" data-year="{{ single_release.year }}">
+                        {{ single_release.title }}
+                    </li>
                 {% endfor %}
             </ul>
         </div>

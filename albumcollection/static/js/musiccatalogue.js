@@ -5,10 +5,14 @@ $(function() {
     console.log($albumLinks);
     for (var $eachLink of $albumLinks) {
         $($eachLink).on('click', function () {
-            console.log("klik");
-            console.log($(this).text());
+            console.log("ustawiono atrybut tytułu");
             $titleField.attr( "value", $.trim($(this).text()) );
-            console.log($titleField.attr('value'));
+            console.log("nowy tytuł:", $titleField.attr('value'));
+            console.log("id albumu w discogs:", $(this).attr('id'));
+            console.log("data wydania albumu:", $(this).attr('data-year'));
+            $yearField.attr( "value", $.trim($(this).attr('data-year')));
+            console.log("nowa data:", $yearField.attr('value'));
+
 
 
         })

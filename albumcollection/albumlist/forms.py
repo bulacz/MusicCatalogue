@@ -18,8 +18,7 @@ class AddAlbumForm(forms.Form):
 
     band = forms.ModelChoiceField(queryset=Artist.objects.all().order_by('name'))
     title = forms.CharField(max_length=160, label="Tytuł albumu", required=False)
-    # title = forms.ModelChoiceField(queryset=[])
     release_year = forms.IntegerField(required=False)
-    songslist = forms.Textarea()
+    songlist = forms.CharField(widget=forms.Textarea(attrs={'width': "100%", 'cols': "80", 'rows': "10", }), required=False)
     type = forms.ChoiceField(label='nośnik', choices=RECORD_TYPES)
     location = forms.ChoiceField(label='lokalizacja', choices=LOCATIONS)
