@@ -22,6 +22,7 @@ class AddAlbumForm(forms.Form):
     songlist = forms.CharField(max_length=1410, required=False)
     type = forms.ChoiceField(label='nośnik', choices=RECORD_TYPES)
     location = forms.ChoiceField(label='lokalizacja', choices=LOCATIONS)
+    discogs_id = forms.IntegerField(label='discogs_id', required=False)
 
 
 class BrowseCatalogueForm(forms.Form):

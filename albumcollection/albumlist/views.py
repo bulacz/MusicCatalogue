@@ -1,6 +1,7 @@
 from django.contrib.sessions import serializers
 from django.core.exceptions import ObjectDoesNotExist
 from django.core import serializers
+from django.db import IntegrityError
 from django.http import HttpResponseRedirect, Http404, JsonResponse
 from django.shortcuts import render
 
@@ -55,8 +56,11 @@ class AddArtist(View):
     def post(self, request):
         form = AddArtistForm(request.POST)
         if form.is_valid():
-            new_artist = Artist.objects.create(name=form.cleaned_data['name'])
-            return HttpResponseRedirect('/artistslist')
+            try:
+                new_artist = Artist.objects.create(name=form.cleaned_data['name'])
+                return HttpResponseRedirect('/artistslist')
+            except IntegrityError:
+                raise Http404
 
 
 class AddAlbum(View):
@@ -79,13 +83,25 @@ class AddAlbum(View):
         elif 'addAlbumSubmit' in request.POST:
             form = AddAlbumForm(request.POST)
             print(request.POST)
-            Album.objects.create(
-                band=Artist.objects.get(pk=int(request.POST['band'][0])),
-                title=request.POST['title'],
-                release_year=request.POST['release_year'],
-                songs=request.POST['songlist'][0],
-                type=request.POST['type'],
-                location=request.POST['location']
+            if request.POST['release_year']:
+                Album.objects.create(
+                    band=Artist.objects.get(pk=int(request.POST['band'][0])),
+                    title=request.POST['title'],
+                    release_year=request.POST['release_year'],
+                    songs=request.POST['songlist'],
+                    type=request.POST['type'],
+                    location=request.POST['location'],
+                    discogs_id=request.POST['discogs_id'],
+                    )
+            else:
+                Album.objects.create(
+                    band=Artist.objects.get(pk=int(request.POST['band'][0])),
+                    title=request.POST['title'],
+                    release_year=0,
+                    songs=request.POST['songlist'],
+                    type=request.POST['type'],
+                    location=request.POST['location'],
+                    discogs_id=request.POST['discogs_id'],
                 )
             return HttpResponseRedirect('/albumlist')
 
@@ -128,18 +144,11 @@ class ShowAlbumsByArtist(View):
         albums = Album.objects.filter(band=artist)
         # data = serializers.serialize("json", Album.objects.filter(band=artist))
         data_list = list(albums.values())
+        if len(data_list) == 0:
+            JsonResponse
         print(data_list)
-        print(data_list[0])
-        print(data_list[1])
         print(len(data_list))
-
         return JsonResponse(data_list, safe=False)
-
-        # JSONSerializer = serializers.get_serializer("")
-        # xml_serializer = XMLSerializer()
-        # xml_serializer.serialize(queryset)
-        # data = xml_serializer.getvalue()
-
 
 
 

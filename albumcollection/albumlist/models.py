@@ -1,5 +1,4 @@
 from django.db import models
-import discogs_client
 
 # Create your models here.
 
@@ -18,10 +17,10 @@ LOCATIONS = (
 
 
 class Artist (models.Model):
-    name = models.CharField(max_length=160)
+    name = models.CharField(max_length=160, unique=True)
 
     def __str__(self):
-        return f'[id:{self.id}] - {self.name}'
+        return f'{self.name}'
 
 
 class Album (models.Model):
@@ -31,9 +30,10 @@ class Album (models.Model):
     songs = models.TextField()
     type = models.IntegerField(choices=RECORD_TYPES, name="type", default=1)
     location = models.IntegerField(choices=LOCATIONS, name="location", default=1)
+    discogs_id = models.IntegerField(unique=True, default=0)
 
     def __str__(self):
-        return f'[id:{self.id}] - "{self.title}", {self.band}, {self.release_year}, ({self.get_location_display()})'
+        return f'"{self.title}", {self.band}, {self.release_year}, ({self.get_location_display()})'
 
 
 

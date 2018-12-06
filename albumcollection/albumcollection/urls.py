@@ -28,7 +28,7 @@ urlpatterns = [
     re_path(r'^main/$', ShowMainPage.as_view()),
     re_path(r'^albumlist/$', ShowAlbumList.as_view()),
     re_path(r'^artistslist/$', ShowAllArtists.as_view()),
-    re_path(r'^add-artist$', AddArtist.as_view()),
+    re_path(r'^add-artist/$', AddArtist.as_view()),
     re_path(r'^add-album$', AddAlbum.as_view()),
     re_path(r'^show-album/(?P<album_id>[0-9]+)$', ShowAlbum.as_view()),
     re_path(r'^show-artist/(?P<artist_id>[0-9]+)$', ShowArtist.as_view()),
