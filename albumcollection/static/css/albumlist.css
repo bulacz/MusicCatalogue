@@ -15,7 +15,6 @@ body {
 }
 
 a:link, a:visited {
-
     color: whitesmoke;
     font-size: 20px;
     margin-left: 14px;
@@ -39,3 +38,6 @@ a:link, a:visited {
     margin-bottom: 10px;
 }
 
+.albumlist {
+    list-style-type: none;
+}

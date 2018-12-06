@@ -1,4 +1,6 @@
 $(function() {
+
+    // Managing dynamic API albumlist and songlist query
     let $titleField = $('#id_title');
     let $yearField = $('#id_release_year');
     let $songListField = $('#id_songlist');
@@ -15,7 +17,7 @@ $(function() {
             console.log("nowa data:", $yearField.attr('value'));
             $.ajax({
                 type: 'GET',
-                url: `http:////api.discogs.com/releases/${$(this).attr('id')}`,
+                url: `http://api.discogs.com/releases/${$(this).attr('id')}`,
                 data: `?callback=callbackname`,
                 })
                 .done(function (res) {
@@ -28,81 +30,32 @@ $(function() {
                         }
                         $songListField.attr('value', $songList);
                         console.log("Zawartośc listy piosenek w formie:", $songListField.attr('value'));
-            });
-
-
-    //          $form.on('submit', function (e) {
-    //     e.preventDefault();
-    //     $.ajax({
-    //         url: apiUrl,
-    //         data: {
-    //             q: $('#search').val(),
-    //         }
-    //     })
-    //         .done(function (res) {
-    //             console.log(res);
-    //             for (response of res.items) {
-    //                 console.log(response.volumeInfo.title);
-    //             }
-    //         })
-    //         .fail(function () {
-    //             console.log();
-    //         })
-    //         .always(function () {
-    //             console.log();
-    //         })
-    // });
-
-
-
-
+                })
+                .fail(function () {
+                    console.log("No tracklist");
+                    $songListField.attr('value', "No songs in database");
+                })
 
         })
     }
-//
-//
-//     success: function(data) {
-//     $('#number').val("value = " + $('#number').val().replace("placeholder", data));
-// }
+ // Managing a clever browse album view
+    let $browseContainer = $('#browseContainer');
+    $('#id_browse_band').on('change', function () {
+        console.log($(this).children("option:selected").attr('value'));
+
+
+        // let $browse_albums =
+        // $browseContainer.append("<form>\
+        //
+        // \{% for each_album in albums
+        // \
+        // \
+        // \
+        // \
+        // \</form>"
+    });
 
 
 
-//
-// document.addEventListener('DOMContentLoaded', function () {
-//     const $album_links = $('.visible');
-//     for single_link of $album_links
-
-
-//     $ApiContactor.on('click', function(event){
-//     event.preventDefault("DSDSDSDSD");
-// });
-
-//
-//         const $form = $('#searchForm');
-//     const apiUrl = 'https://www.googleapis.com/books/v1/volumes';
-//
-//
-//       $form.on('submit', function (e) {
-//         e.preventDefault();
-//         $.ajax({
-//             url: apiUrl,
-//             data: {
-//                 q: $('#search').val(),
-//             }
-//         })
-//             .done(function (res) {
-//                 console.log(res);
-//                 for (response of res.items) {
-//                     console.log(response.volumeInfo.title);
-//                 }
-//             })
-//             .fail(function () {
-//                 console.log();
-//             })
-//             .always(function () {
-//                 console.log();
-//             })
-//     });
-// });
 
 });

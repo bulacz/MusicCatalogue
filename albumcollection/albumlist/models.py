@@ -21,7 +21,7 @@ class Artist (models.Model):
     name = models.CharField(max_length=160)
 
     def __str__(self):
-        return f'{self.name}'
+        return f'[id:{self.id}] - {self.name}'
 
 
 class Album (models.Model):
@@ -33,7 +33,7 @@ class Album (models.Model):
     location = models.IntegerField(choices=LOCATIONS, name="location", default=1)
 
     def __str__(self):
-        return f'"{self.title}", {self.band}, {self.release_year}, ({self.get_location_display()})'
+        return f'[id:{self.id}] - "{self.title}", {self.band}, {self.release_year}, ({self.get_location_display()})'
 
 
 

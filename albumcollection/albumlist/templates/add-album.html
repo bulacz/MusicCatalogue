@@ -19,8 +19,8 @@
     </div>
 
     {% if releases %}
-        <div>
-            <ul>
+        <div align="center" >
+            <ul class = "albumlist">
                 {% for single_release in releases %}
                     <li class="visible" id="{{ single_release.id }}" data-year="{{ single_release.year }}">
                         {{ single_release.title }}

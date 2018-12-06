@@ -21,7 +21,7 @@ from django.views.static import serve
 
 from albumcollection import settings
 from albumlist.views import ShowAlbumList, ShowAllArtists, AddArtist, AddAlbum, ShowAlbum, ShowArtist, DeleteAlbum, \
-    DeleteArtist, ShowMainPage
+    DeleteArtist, ShowMainPage, BrowseCatalogue, ShowAlbumsByArtist
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -34,6 +34,8 @@ urlpatterns = [
     re_path(r'^show-artist/(?P<artist_id>[0-9]+)$', ShowArtist.as_view()),
     re_path(r'^delete-album/(?P<album_id>[0-9]+)$', DeleteAlbum.as_view()),
     re_path(r'^delete-artist/(?P<artist_id>[0-9]+)$', DeleteArtist.as_view()),
+    re_path(r'^browse-catalogue$', BrowseCatalogue.as_view()),
+    re_path(r'^show-albums-by-artist/(?P<artist_id>[0-9]+)$', ShowAlbumsByArtist.as_view()),
 
 ]
 
