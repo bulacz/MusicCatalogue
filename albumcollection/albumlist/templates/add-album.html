@@ -10,13 +10,29 @@
 {% block content %}
     <P> lala</P>
     <div align="center" class="container">
-        <form method="post">
+        <form id="addAlbumForm" method="post">
             {% csrf_token %}
-                {{ form}}
-            <input type="submit" class="linkButton" value="Pobierz dane z discogs"><BR>
-            <button type="submit" class="btn btn-success btn-lg">Dodaj</button>
+                {{ form }}
+            <input type="submit" name="discogsLink" class="linkButton" value="Pobierz dane z discogs"><BR>
+            <button type="submit" name="addAlbumSubmit" class="btn btn-success btn-lg">Dodaj</button>
         </form>
-
     </div>
+
+    {% if releases %}
+        <div>
+            <ul>
+                {% for single_release in releases %}
+                    <div>
+                        <li class="visible" id="{{ single_release.id }}">  {{ single_release.title }}  </li>
+                        <li class="hidden" id="id_number">  {{ single_release.id }}  </li>
+                        <li class="hidden" id="release_date"> {{ single_release.year }}  </li>
+                    </div>
+                {% endfor %}
+            </ul>
+        </div>
+
+    {% endif %}
+
+
 
 {% endblock %}

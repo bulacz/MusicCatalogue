@@ -55,38 +55,75 @@ class AddAlbum(View):
         return render(request, 'add-album.html', {"form": form})
 
     def post(self, request):
-        form = AddAlbumForm(request.POST)
-        band_id = form.data['band']
-        band_to_discogs = Artist.objects.get(pk=band_id).name
-        print("Wychodzi", band_to_discogs)
+        print(request.POST)
+        if 'discogsLink' in request.POST:
+            print("1")
+            form = AddAlbumForm(request.POST)
+            print("2")
+            band_id = form.data['band']
+            print("3")
+            band_to_discogs = Artist.objects.get(pk=band_id).name
+            print("4")
+            user_agent = 'Bootcamp graduation app - MusicCatalogue by bulacz'
+            print("5")
+            discogsclient = discogs_client.Client(user_agent, user_token=disocgs_data['app_token'])
+            print("6")
+            results = discogsclient.search(f'{band_to_discogs}', type='artist', role='main', )
+            print("7")
+            releases = results[0].releases
+            print("releases", releases)
+            return render(request, 'add-album.html', {"form": form, "releases": releases})
 
-        ## realizacja zapytania do API,
-        ## przygotowanie klienta:
-        user_agent = 'Bootcamp graduation app - MusicCatalogue by bulacz'
 
-        ## przekazanie tokena aplikacji. Aplikacja nie podszywa się pod dowolnego zalogowanego w niej użytkownika
-        discogsclient = discogs_client.Client(user_agent, user_token=disocgs_data['app_token'])
 
-        '''
-        ##przekazanie klientowi danych niezbędnych do walidacji
-        discogsclient.set_consumer_key(disocgs_data['consumer_key'], disocgs_data['consumer_secret'])
-        discogsclient.get_authorize_url(disocgs_data['request-token'], "request-secret", disocgs_data['authorize-url'])
 
-        # token, secret, url = discogsclient.get_authorize_url()
-        try:
-            access_token, access_secret = discogsclient.get_access_token(oauth_verifier)
-        except HTTPError:
-            print
-            'Unable to authenticate.'
-            sys.exit(1)
-        # discogs_query = discogs_clien
-        '''
+        #
+        # form = AddAlbumForm(request.POST)
+        # band_id = form.data['band']
+        # band_to_discogs = Artist.objects.get(pk=band_id).name
+        # print("Wychodzi", band_to_discogs)
+        #
+        # ## realizacja zapytania do API,
+        # ## przygotowanie klienta:
+        # user_agent = 'Bootcamp graduation app - MusicCatalogue by bulacz'
+        #
+        # ## przekazanie tokena aplikacji. Aplikacja nie podszywa się pod dowolnego zalogowanego w niej użytkownika
+        # discogsclient = discogs_client.Client(user_agent, user_token=disocgs_data['app_token'])
+        #
+        # '''
+        # ##przekazanie klientowi danych niezbędnych do walidacji
+        # discogsclient.set_consumer_key(disocgs_data['consumer_key'], disocgs_data['consumer_secret'])
+        # discogsclient.get_authorize_url(disocgs_data['request-token'], "request-secret", disocgs_data['authorize-url'])
+        #
+        # # token, secret, url = discogsclient.get_authorize_url()
+        # try:
+        #     access_token, access_secret = discogsclient.get_access_token(oauth_verifier)
+        # except HTTPError:
+        #     print
+        #     'Unable to authenticate.'
+        #     sys.exit(1)
+        #
+        # '''
+        #
+        # results = discogsclient.search(f'{band_to_discogs}', type='artist', role='main', )
+        # releases = results[0].releases
+        #
+        #
+        # # print("Przychodzi", results[0].name)
+        # # print("Przychodzi", results[0].id)
+        # #
+        # # for each_release in results[0].releases:
+        # #     print(each_release.title, ":", each_release.tracklist)
+        # #     # print(each_release.data['title'], each_release.data['tracklist'])
+        # # albums_results = discogsclient.search(artist=results[0].id)
+        #
+        # return render(request, 'add-album.html', {"form": form})
 
-        results = discogsclient.search(f'{band_to_discogs}', type='artist')
-        print("Przychodzi", results[0].id)
-        print("Przychodzi", results[0].releases)
-        for each_release in results[0].releases:
-            print(each_release.data['title'])
+    # form = AddAlbumForm(request.POST)
+    # band_id = form.data['band']
+    # band_to_discogs = Artist.objects.get(pk=band_id).name
+    # print("Wychodzi", band_to_discogs)
+
 
 
 
