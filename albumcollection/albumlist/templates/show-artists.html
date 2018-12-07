@@ -5,6 +5,16 @@
 {% endblock %}
 
 {% block content %}
-    <P> lala</P>
-    {{ artists }}
+
+    <table class="table">
+        <thead>
+            Artyści w Twojej bazie:
+        </thead>
+            {% for each_artist in artists %}
+                    <tr>
+                        <td> {{ each_artist }}</td>
+                    </tr>
+            {% endfor %}
+    </table>
+
 {% endblock %}

@@ -4,14 +4,12 @@ body {
     color: whitesmoke;
     padding-left: 15px;
     /*background-image: url("albumcollection/media/background.jpg");*/
-
 }
 
 .site-header {
     font-size: 28px;
     font-weight: 700;
     color: whitesmoke;
-
 }
 
 a:link, a:visited {
@@ -40,4 +38,9 @@ a:link, a:visited {
 
 .albumlist {
     list-style-type: none;
+}
+
+.albums_table {
+    border: 2px solid white;
+
 }

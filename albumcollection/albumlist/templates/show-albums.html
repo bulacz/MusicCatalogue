@@ -5,6 +5,23 @@
 {% endblock %}
 
 {% block content %}
-    <P> lala</P>
-    {{ albums }}
+
+    <table class="table">
+        <thead>
+            To twoje albumy:
+        </thead>
+            {% for each_album in albums %}
+                {% if each_album.release_year == 0 %}
+                    <tr>
+                        <td> "{{ each_album.title }}" - {{ each_album.band }}</td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td>"{{ each_album.title }}" - [{{ each_album.release_year }}] - {{ each_album.band }}</td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+    </table>
+
+
 {% endblock %}

@@ -22,7 +22,6 @@ class AddAlbumForm(forms.Form):
     songlist = forms.CharField(max_length=1410, required=False)
     type = forms.ChoiceField(label='nośnik', choices=RECORD_TYPES)
     location = forms.ChoiceField(label='lokalizacja', choices=LOCATIONS)
-    discogs_id = forms.IntegerField(label='discogs_id', required=False)
 
 
 class BrowseCatalogueForm(forms.Form):
@@ -34,4 +33,15 @@ class BrowseCatalogueForm(forms.Form):
         })
 
     browse_band = forms.ModelChoiceField(queryset=Artist.objects.all().order_by('name'))
+
+
+class SearchForm(forms.Form):
+    def __init__(self, *args, **kwargs):
+        super(SearchForm, self).__init__(*args, **kwargs)
+        for field in iter(self.fields):
+            self.fields[field].widget.attrs.update({
+                'class': 'form-control'
+            })
+
+    phrase = forms.CharField(max_length=160, label="Wyszukiwana fraza")
 

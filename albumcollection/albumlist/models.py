@@ -30,10 +30,9 @@ class Album (models.Model):
     songs = models.TextField()
     type = models.IntegerField(choices=RECORD_TYPES, name="type", default=1)
     location = models.IntegerField(choices=LOCATIONS, name="location", default=1)
-    discogs_id = models.IntegerField(unique=True, default=0)
 
     def __str__(self):
-        return f'"{self.title}", {self.band}, {self.release_year}, ({self.get_location_display()})'
+        return f'"{self.title}", ({self.get_location_display()})'
 
 
 

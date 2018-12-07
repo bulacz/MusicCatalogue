@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Wyszukiwanie w DB
+{% endblock %}
+
+{% block content %}
+    <div align="center" class="container">
+        <form method="post">
+            {% csrf_token %}
+            {{ form }}<BR>
+            <button type="submit" class="btn btn-success btn-lg">Sprawdź</button>
+        </form>
+    </div>
+<BR>
+        <div align="center" id="search_result">
+        {% if msg %}
+            {{ msg }}
+        {% endif %}
+        <ul>
+         {% for key, value in res.items %}
+             {% for each_value in value %}
+                <p>{{ key }} - {{ value }}</p><BR>
+             {% endfor %}
+         {% endfor %}
+        </ul>
+    </div>
+
+
+
+{#    <div align="center" id="search_result">#}
+{#        {% if msg %}#}
+{#            {{ msg }}#}
+{#        {% endif %}#}
+{#        <ul>#}
+{#         {% for key, value in res.items %}#}
+{#             <p>{{ key }} - {{ value }}</p><BR>#}
+{#         {% endfor %}#}
+{#        </ul>#}
+{#    </div>#}
+
+{% endblock %}
